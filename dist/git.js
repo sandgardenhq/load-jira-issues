@@ -50,15 +50,15 @@ function parseGitLogOutput(output) {
     for (let i = 0; i < parts.length; i += 2) {
         if (parts[i] && parts[i + 1] !== undefined) {
             commits.push({
-                sha: parts[i],
-                message: parts[i + 1],
+                sha: parts[i].trim(),
+                message: parts[i + 1].trim(),
             });
         }
         else if (parts[i]) {
             // Handle last commit if no trailing null byte
             commits.push({
-                sha: parts[i],
-                message: parts[i + 1] || '',
+                sha: parts[i].trim(),
+                message: (parts[i + 1] || '').trim(),
             });
         }
     }
