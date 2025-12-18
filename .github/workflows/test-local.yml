@@ -1,0 +1,27 @@
+name: Test Action Locally
+on: workflow_dispatch
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Full history for commit scanning
+
+      - uses: ./
+        id: jira
+        with:
+          jira-base-url: ${{ secrets.JIRA_BASE_URL }}
+          jira-api-token: ${{ secrets.JIRA_API_TOKEN }}
+          jira-user-email: ${{ secrets.JIRA_USER_EMAIL }}
+          commits-count: 10
+
+      - name: Display results
+        run: |
+          echo "Issue count: ${{ steps.jira.outputs.issue-count }}"
+          echo "Issue keys: ${{ steps.jira.outputs.issue-keys }}"
+          echo "Issue links: ${{ steps.jira.outputs.issue-links }}"
+          echo ""
+          echo "=== Output file contents ==="
+          cat jira-issues.json | jq .

@@ -203,6 +203,39 @@ npm test
 npm run package
 ```
 
+### Local Testing with `act`
+
+You can test the action locally using [`act`](https://github.com/nektos/act), which runs GitHub Actions in Docker containers.
+
+**1. Install act**
+
+```bash
+brew install act
+```
+
+**2. Set up credentials**
+
+```bash
+cp .secrets.example .secrets
+```
+
+Edit `.secrets` with your JIRA credentials:
+
+```
+JIRA_BASE_URL=https://your-domain.atlassian.net
+JIRA_API_TOKEN=your-api-token
+JIRA_USER_EMAIL=your-email@example.com
+```
+
+**3. Build and run**
+
+```bash
+npm run build && npm run package
+act workflow_dispatch --secret-file .secrets
+```
+
+The test workflow scans the last 10 commits by default. Add `-v` for verbose output.
+
 ## License
 
 MIT License - see LICENSE file for details.
