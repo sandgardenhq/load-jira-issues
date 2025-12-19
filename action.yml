@@ -3,7 +3,7 @@ description: 'Extract JIRA issue references from Git commits for use in downstre
 author: 'Sandgarden'
 
 branding:
-  icon: 'link'
+  icon: 'folder-plus'
   color: 'green'
 
 inputs:
