@@ -4,7 +4,7 @@ author: 'Sandgarden'
 
 branding:
   icon: 'link'
-  color: 'blue'
+  color: 'green'
 
 inputs:
   jira-base-url:
